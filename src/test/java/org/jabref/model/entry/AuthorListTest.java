@@ -1220,4 +1220,12 @@ public class AuthorListTest {
         AuthorList secondAuthorList = AuthorList.of(new Author("B", null, null, null, null));
         assertNotEquals(firstAuthorList.hashCode(), secondAuthorList.hashCode());
     }
+
+    @Test
+    void getAsLastFirstFirstLastNamesWithAnd() {
+        Author author = AuthorList.parse("Carlos Drummond de Andrade").getAuthor(0);
+        assertEquals("de Andrade, C. D.", AuthorList.of(author).getAsLastFirstFirstLastNamesWithAnd(true));
+        Author author1 = AuthorList.parse("Carlos Drummond de Andrade and Clarice Lispector").getAuthor(0);
+        assertEquals("de Andrade, C. D.", AuthorList.of(author1).getAsLastFirstFirstLastNamesWithAnd(true));
+    }
 }
